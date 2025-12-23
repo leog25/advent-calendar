@@ -18,14 +18,20 @@ const images = {
   12: 'reindeer.png',
 };
 
-export default function DoorDetail({ doorNumber, onClose }) {
+export default function DoorDetail({ doorNumber, startPosition, onClose }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showShake, setShowShake] = useState(false);
   const isUnlocked = isDoorUnlocked(doorNumber);
   const message = getMessage(doorNumber);
   const imagePath = `/door design/${images[doorNumber]}`;
 
-  const handleDoorClick = () => {
+  // Calculate center position for the zoomed door
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+  const finalSize = Math.min(window.innerWidth * 0.85, 400);
+
+  const handleDoorClick = (e) => {
+    e.stopPropagation();
     if (isUnlocked) {
       setIsOpen(!isOpen);
     } else {
@@ -39,68 +45,90 @@ export default function DoorDetail({ doorNumber, onClose }) {
     : {};
 
   return (
-    <div className="door-detail-overlay" onClick={onClose}>
+    <motion.div
+      className="door-detail-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={onClose}
+    >
       <motion.div
-        className="door-detail-container"
+        className="zoomed-door-wrapper"
+        initial={{
+          position: 'fixed',
+          left: startPosition.x,
+          top: startPosition.y,
+          width: startPosition.width,
+          height: startPosition.height,
+        }}
+        animate={{
+          left: centerX - finalSize / 2,
+          top: centerY - finalSize / 2,
+          width: finalSize,
+          height: finalSize,
+          ...shakeAnimation,
+        }}
+        exit={{
+          left: startPosition.x,
+          top: startPosition.y,
+          width: startPosition.width,
+          height: startPosition.height,
+        }}
+        transition={{
+          duration: 0.5,
+          ease: [0.4, 0, 0.2, 1],
+          x: { duration: 0.4 }
+        }}
         onClick={(e) => e.stopPropagation()}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
       >
-        <motion.div
-          className="door-detail-card"
-          layoutId={`door-${doorNumber}`}
-          animate={shakeAnimation}
-          transition={{ duration: 0.5 }}
+        <div
+          className={`door-flipper ${isOpen ? 'flipped' : ''}`}
+          onClick={handleDoorClick}
         >
-          <div
-            className={`door-flipper ${isOpen ? 'flipped' : ''}`}
-            onClick={handleDoorClick}
-          >
-            {/* Front of door */}
-            <div className="door-face door-front">
-              <div className="door-content">
-                <img
-                  src={imagePath}
-                  alt={`Door ${doorNumber}`}
-                  className="door-image"
-                />
-                <span className="door-number">{doorNumber}</span>
-              </div>
-              {!isUnlocked && (
-                <div className="locked-indicator">
-                  <span className="lock-icon">🔒</span>
-                  <span className="unlock-date">Opens {getUnlockDate(doorNumber)}</span>
-                </div>
-              )}
-              {isUnlocked && !isOpen && (
-                <div className="tap-hint">Tap to open</div>
-              )}
+          {/* Front of door */}
+          <div className="door-face door-front">
+            <div className="door-content">
+              <img
+                src={imagePath}
+                alt={`Door ${doorNumber}`}
+                className="door-image"
+              />
+              <span className="door-number">{doorNumber}</span>
             </div>
-
-            {/* Back of door (message) */}
-            <div className="door-face door-back">
-              <div className="message-content">
-                {message ? (
-                  <p className="message-text">{message}</p>
-                ) : (
-                  <p className="message-locked">Not yet!</p>
-                )}
+            {!isUnlocked && (
+              <div className="locked-indicator">
+                <span className="unlock-date">Opens {getUnlockDate(doorNumber)}</span>
               </div>
+            )}
+            {isUnlocked && !isOpen && (
+              <div className="tap-hint">Tap to open</div>
+            )}
+          </div>
+
+          {/* Back of door (message) */}
+          <div className="door-face door-back">
+            <div className="message-content">
+              {message ? (
+                <p className="message-text">{message}</p>
+              ) : (
+                <p className="message-locked">Not yet!</p>
+              )}
             </div>
           </div>
-        </motion.div>
-
-        <motion.button
-          className="back-button"
-          onClick={onClose}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          ← Back to Calendar
-        </motion.button>
+        </div>
       </motion.div>
-    </div>
+
+      <motion.button
+        className="back-button"
+        onClick={onClose}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ delay: 0.2, duration: 0.3 }}
+      >
+        ← Back
+      </motion.button>
+    </motion.div>
   );
 }

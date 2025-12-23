@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { isDoorUnlocked } from '../data/messages';
 import './Door.css';
@@ -18,15 +19,28 @@ const images = {
 };
 
 export default function Door({ doorNumber, onSelect }) {
+  const doorRef = useRef(null);
   const isUnlocked = isDoorUnlocked(doorNumber);
   const imagePath = `/door design/${images[doorNumber]}`;
 
+  const handleClick = () => {
+    if (doorRef.current) {
+      const rect = doorRef.current.getBoundingClientRect();
+      onSelect(doorNumber, {
+        x: rect.left,
+        y: rect.top,
+        width: rect.width,
+        height: rect.height,
+      });
+    }
+  };
+
   return (
     <motion.div
+      ref={doorRef}
       className={`door ${isUnlocked ? 'unlocked' : 'locked'}`}
-      layoutId={`door-${doorNumber}`}
-      onClick={() => onSelect(doorNumber)}
-      whileHover={{ scale: 1.05 }}
+      onClick={handleClick}
+      whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
     >
       <div className="door-content">
