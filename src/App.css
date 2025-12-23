@@ -4,10 +4,45 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
+  overflow: hidden;
 }
 
 .calendar-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+}
+
+.snowfall {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  background: #fff;
+  border-radius: 50%;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10px) translateX(0);
+  }
+  25% {
+    transform: translateY(25vh) translateX(10px);
+  }
+  50% {
+    transform: translateY(50vh) translateX(-10px);
+  }
+  75% {
+    transform: translateY(75vh) translateX(10px);
+  }
+  100% {
+    transform: translateY(105vh) translateX(0);
+  }
 }

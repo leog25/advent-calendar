@@ -50,7 +50,7 @@ export default function DoorDetail({ doorNumber, startPosition, onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       onClick={onClose}
     >
       <motion.div
@@ -74,10 +74,11 @@ export default function DoorDetail({ doorNumber, startPosition, onClose }) {
           top: startPosition.y,
           width: startPosition.width,
           height: startPosition.height,
+          opacity: 0,
         }}
         transition={{
-          duration: 0.5,
-          ease: [0.4, 0, 0.2, 1],
+          duration: 0.55,
+          ease: [0.25, 0.1, 0.25, 1],
           x: { duration: 0.4 }
         }}
         onClick={(e) => e.stopPropagation()}

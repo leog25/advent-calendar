@@ -1,8 +1,40 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Calendar from './components/Calendar';
 import DoorDetail from './components/DoorDetail';
 import './App.css';
+
+function Snowflakes() {
+  const snowflakes = useMemo(() => {
+    return Array.from({ length: 50 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 10,
+      duration: 8 + Math.random() * 8,
+      size: 2 + Math.random() * 4,
+      opacity: 0.3 + Math.random() * 0.5,
+    }));
+  }, []);
+
+  return (
+    <div className="snowfall">
+      {snowflakes.map((flake) => (
+        <div
+          key={flake.id}
+          className="snowflake"
+          style={{
+            left: `${flake.left}%`,
+            animationDelay: `${flake.delay}s`,
+            animationDuration: `${flake.duration}s`,
+            width: `${flake.size}px`,
+            height: `${flake.size}px`,
+            opacity: flake.opacity,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function App() {
   const [selectedDoor, setSelectedDoor] = useState(null);
@@ -20,13 +52,17 @@ export default function App() {
 
   return (
     <div className="app">
+      <Snowflakes />
       <motion.div
         className="calendar-container"
         animate={{
           opacity: selectedDoor ? 0 : 1,
-          scale: selectedDoor ? 1.5 : 1,
+          scale: selectedDoor ? 0.95 : 1,
         }}
-        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+        transition={{
+          duration: selectedDoor ? 0.5 : 0.4,
+          ease: "easeInOut",
+        }}
       >
         <Calendar onSelectDoor={handleSelectDoor} selectedDoor={selectedDoor} />
       </motion.div>
