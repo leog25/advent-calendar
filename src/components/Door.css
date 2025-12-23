@@ -1,0 +1,48 @@
+.door {
+  background: #8b1a2a;
+  border-radius: 2px;
+  cursor: pointer;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s ease;
+}
+
+.door:hover {
+  background: #a02035;
+}
+
+.door.locked {
+  opacity: 0.9;
+}
+
+.door-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
+.door-image {
+  width: 55%;
+  height: 55%;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.door-number {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+}
