@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Calendar from './components/Calendar';
 import DoorDetail from './components/DoorDetail';
 import Guidelines from './components/Guidelines';
+import ChristmasLights from './components/ChristmasLights';
 import './App.css';
 
 function Snowflakes() {
@@ -55,6 +56,7 @@ export default function App() {
   return (
     <div className="app">
       <Snowflakes />
+      <ChristmasLights />
 
       <motion.button
         className="guidelines-button"
