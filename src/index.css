@@ -6,7 +6,12 @@
 
 body {
   font-family: 'Instrument Serif', serif;
-  background: #0f0f0f;
+  background: linear-gradient(
+    180deg,
+    #0a1628 0%,
+    #132744 50%,
+    #0d1f3c 100%
+  );
   min-height: 100vh;
   display: flex;
   justify-content: center;
