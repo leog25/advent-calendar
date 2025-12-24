@@ -3,32 +3,49 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 60px;
   z-index: 5;
   pointer-events: none;
 }
 
-.lights-wire {
+.lights-wire-svg {
   position: absolute;
-  top: 8px;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: #1a1a1a;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  height: 60px;
 }
 
-.lights-container {
+.wire-path {
+  fill: none;
+  stroke: #1a1a1a;
+  stroke-width: 0.3;
+}
+
+.strands-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.strand {
+  flex: 1;
+  position: relative;
   display: flex;
   justify-content: space-around;
-  padding: 0 10px;
+  align-items: flex-start;
+  padding: 0 5px;
 }
 
 .light-bulb {
+  --progress: calc(var(--light-index) / (var(--total-lights) - 1));
+  --curve: calc(4 * var(--progress) * (1 - var(--progress)));
+
   position: relative;
-  width: 14px;
-  height: 20px;
+  width: 12px;
+  height: 18px;
   border-radius: 50% 50% 45% 45%;
-  margin-top: 6px;
+  margin-top: calc(2px + var(--curve) * 38px);
   animation: twinkle 1s ease-in-out infinite;
 }
 
@@ -39,36 +56,36 @@
   top: -4px;
   left: 50%;
   transform: translateX(-50%);
-  width: 8px;
-  height: 6px;
+  width: 6px;
+  height: 5px;
   background: #2a2a2a;
   border-radius: 2px 2px 0 0;
 }
 
-/* Light colors */
+/* Light colors with glow */
 .light-bulb.red {
-  background: #ff3333;
-  box-shadow: 0 0 10px #ff3333, 0 0 20px #ff3333, 0 0 30px #ff333388;
+  background: radial-gradient(circle at 30% 30%, #ff6666, #ff3333, #cc0000);
+  box-shadow: 0 0 8px #ff3333, 0 0 16px #ff3333, 0 0 24px #ff333366;
 }
 
 .light-bulb.green {
-  background: #33ff33;
-  box-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff3388;
+  background: radial-gradient(circle at 30% 30%, #66ff66, #33ff33, #00cc00);
+  box-shadow: 0 0 8px #33ff33, 0 0 16px #33ff33, 0 0 24px #33ff3366;
 }
 
 .light-bulb.blue {
-  background: #3399ff;
-  box-shadow: 0 0 10px #3399ff, 0 0 20px #3399ff, 0 0 30px #3399ff88;
+  background: radial-gradient(circle at 30% 30%, #66b3ff, #3399ff, #0066cc);
+  box-shadow: 0 0 8px #3399ff, 0 0 16px #3399ff, 0 0 24px #3399ff66;
 }
 
 .light-bulb.yellow {
-  background: #ffdd33;
-  box-shadow: 0 0 10px #ffdd33, 0 0 20px #ffdd33, 0 0 30px #ffdd3388;
+  background: radial-gradient(circle at 30% 30%, #ffee66, #ffdd33, #ccaa00);
+  box-shadow: 0 0 8px #ffdd33, 0 0 16px #ffdd33, 0 0 24px #ffdd3366;
 }
 
 .light-bulb.orange {
-  background: #ff9933;
-  box-shadow: 0 0 10px #ff9933, 0 0 20px #ff9933, 0 0 30px #ff993388;
+  background: radial-gradient(circle at 30% 30%, #ffbb66, #ff9933, #cc6600);
+  box-shadow: 0 0 8px #ff9933, 0 0 16px #ff9933, 0 0 24px #ff993366;
 }
 
 /* Twinkle animation */
@@ -78,19 +95,25 @@
     filter: brightness(1);
   }
   50% {
-    opacity: 0.6;
-    filter: brightness(0.7);
+    opacity: 0.5;
+    filter: brightness(0.6);
   }
 }
 
 /* Staggered animation delays for natural twinkling */
-.light-bulb:nth-child(5n+1) { animation-delay: 0s; }
-.light-bulb:nth-child(5n+2) { animation-delay: 0.2s; }
-.light-bulb:nth-child(5n+3) { animation-delay: 0.5s; }
-.light-bulb:nth-child(5n+4) { animation-delay: 0.3s; }
-.light-bulb:nth-child(5n+5) { animation-delay: 0.7s; }
+.light-bulb:nth-child(7n+1) { animation-delay: 0s; }
+.light-bulb:nth-child(7n+2) { animation-delay: 0.3s; }
+.light-bulb:nth-child(7n+3) { animation-delay: 0.6s; }
+.light-bulb:nth-child(7n+4) { animation-delay: 0.15s; }
+.light-bulb:nth-child(7n+5) { animation-delay: 0.45s; }
+.light-bulb:nth-child(7n+6) { animation-delay: 0.75s; }
+.light-bulb:nth-child(7n+7) { animation-delay: 0.9s; }
 
-/* Additional variation in animation duration */
-.light-bulb:nth-child(3n+1) { animation-duration: 1.1s; }
-.light-bulb:nth-child(3n+2) { animation-duration: 0.9s; }
-.light-bulb:nth-child(3n+3) { animation-duration: 1.3s; }
+/* Variation in animation duration */
+.light-bulb:nth-child(3n+1) { animation-duration: 1.2s; }
+.light-bulb:nth-child(3n+2) { animation-duration: 0.8s; }
+.light-bulb:nth-child(3n+3) { animation-duration: 1.4s; }
+
+/* Different strands have slightly different timing */
+.strand:nth-child(odd) .light-bulb { animation-delay: calc(var(--light-index) * 0.15s); }
+.strand:nth-child(even) .light-bulb { animation-delay: calc(var(--light-index) * 0.12s + 0.1s); }
