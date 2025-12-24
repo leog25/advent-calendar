@@ -71,6 +71,29 @@
   opacity: 0.9;
 }
 
+.door.unlocked {
+  border: 1px solid rgba(255, 215, 0, 0.6);
+  box-shadow:
+    0 0 15px rgba(255, 215, 0, 0.7),
+    0 0 30px rgba(255, 200, 0, 0.5),
+    0 0 45px rgba(255, 180, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.door.unlocked:hover {
+  box-shadow:
+    0 0 20px rgba(255, 215, 0, 0.8),
+    0 0 40px rgba(255, 200, 0, 0.6),
+    0 0 60px rgba(255, 180, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.35),
+    0 8px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
 .door-content {
   width: 100%;
   height: 100%;
