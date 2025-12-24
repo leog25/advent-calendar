@@ -7,11 +7,47 @@
 
 .calendar-title {
   color: #fff;
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 400;
   margin-bottom: 40px;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   font-style: italic;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(255, 255, 255, 0.15);
+  position: relative;
+}
+
+.calendar-title::before,
+.calendar-title::after {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #ffd700;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.calendar-title::before {
+  left: -30px;
+  animation-delay: 0s;
+}
+
+.calendar-title::after {
+  right: -30px;
+  animation-delay: 1s;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(-50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.2);
+  }
 }
 
 .calendar-frame {
@@ -55,6 +91,19 @@
   .calendar-title {
     font-size: 2.2rem;
     margin-bottom: 30px;
+  }
+
+  .calendar-title::before,
+  .calendar-title::after {
+    font-size: 0.9rem;
+  }
+
+  .calendar-title::before {
+    left: -20px;
+  }
+
+  .calendar-title::after {
+    right: -20px;
   }
 
   .calendar-frame {
