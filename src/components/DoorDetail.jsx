@@ -21,8 +21,9 @@ const images = {
 export default function DoorDetail({ doorNumber, startPosition, onClose }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showShake, setShowShake] = useState(false);
+  const [message, setMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const isUnlocked = isDoorUnlocked(doorNumber);
-  const message = getMessage(doorNumber);
   const imagePath = `/door design/${images[doorNumber]}`;
 
   // Calculate center position for the zoomed door
@@ -30,10 +31,20 @@ export default function DoorDetail({ doorNumber, startPosition, onClose }) {
   const centerY = window.innerHeight / 2;
   const finalSize = Math.min(window.innerWidth * 0.85, 400);
 
-  const handleDoorClick = (e) => {
+  const handleDoorClick = async (e) => {
     e.stopPropagation();
     if (isUnlocked) {
-      setIsOpen(!isOpen);
+      if (!isOpen) {
+        // Opening the door - fetch message from server
+        setIsOpen(true);
+        setIsLoading(true);
+        const fetchedMessage = await getMessage(doorNumber);
+        setMessage(fetchedMessage);
+        setIsLoading(false);
+      } else {
+        // Closing the door
+        setIsOpen(false);
+      }
     } else {
       setShowShake(true);
       setTimeout(() => setShowShake(false), 500);
@@ -110,7 +121,9 @@ export default function DoorDetail({ doorNumber, startPosition, onClose }) {
           {/* Back of door (message) */}
           <div className="door-face door-back">
             <div className="message-content">
-              {message ? (
+              {isLoading ? (
+                <p className="message-loading">Loading...</p>
+              ) : message ? (
                 <p className="message-text">{message}</p>
               ) : (
                 <p className="message-locked">Not yet!</p>

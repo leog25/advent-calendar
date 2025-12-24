@@ -1,23 +1,5 @@
-// Obfuscated messages - Base64 encoded
-// Placeholders: day1, day2, ... day12
-// Replace with your custom messages (encode them using btoa())
-
-const encodedMessages = {
-  1: 'ZGF5MQ==',   // day1
-  2: 'ZGF5Mg==',   // day2
-  3: 'ZGF5Mw==',   // day3
-  4: 'ZGF5NA==',   // day4
-  5: 'ZGF5NQ==',   // day5
-  6: 'ZGF5Ng==',   // day6
-  7: 'ZGF5Nw==',   // day7
-  8: 'ZGF5OA==',   // day8
-  9: 'ZGF5OQ==',   // day9
-  10: 'ZGF5MTA=',  // day10
-  11: 'ZGF5MTE=',  // day11
-  12: 'ZGF5MTI=',  // day12
-};
-
 // Door unlock dates (month is 0-indexed in JS)
+// These are kept client-side for UI display ("Opens Dec 25")
 const unlockDates = {
   1: { month: 11, day: 25 },   // Dec 25
   2: { month: 11, day: 26 },   // Dec 26
@@ -33,7 +15,14 @@ const unlockDates = {
   12: { month: 0, day: 5 },    // Jan 5
 };
 
+// Client-side check for UI purposes (showing lock icon, etc.)
+// Note: The actual security check happens server-side
 export function isDoorUnlocked(doorNumber) {
+  // Testing mode bypasses date check
+  if (import.meta.env.VITE_TESTING_MODE === 'true') {
+    return true;
+  }
+
   const now = new Date();
   const currentYear = now.getFullYear();
   const unlock = unlockDates[doorNumber];
@@ -41,10 +30,8 @@ export function isDoorUnlocked(doorNumber) {
   // Handle year transition (Dec -> Jan)
   let unlockYear = currentYear;
   if (unlock.month === 0 && now.getMonth() === 11) {
-    // If we're in December and door unlocks in January, use next year
     unlockYear = currentYear + 1;
   } else if (unlock.month === 11 && now.getMonth() === 0) {
-    // If we're in January and door unlocks in December, use last year
     unlockYear = currentYear - 1;
   }
 
@@ -52,14 +39,23 @@ export function isDoorUnlocked(doorNumber) {
   return now >= unlockDate;
 }
 
-export function getMessage(doorNumber) {
-  if (!isDoorUnlocked(doorNumber)) {
-    return null;
-  }
-
+// Fetch message from secure backend API
+export async function getMessage(doorNumber) {
   try {
-    return atob(encodedMessages[doorNumber]);
-  } catch {
+    const response = await fetch(`/api/message/${doorNumber}`);
+
+    if (!response.ok) {
+      if (response.status === 403) {
+        // Door is locked
+        return null;
+      }
+      throw new Error('Failed to fetch message');
+    }
+
+    const data = await response.json();
+    return data.message;
+  } catch (error) {
+    console.error('Error fetching message:', error);
     return null;
   }
 }

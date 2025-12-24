@@ -145,6 +145,13 @@
   font-style: italic;
 }
 
+.message-loading {
+  font-size: 1.5rem;
+  color: #666;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+}
+
 .back-button {
   position: fixed;
   bottom: 40px;

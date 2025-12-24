@@ -6,7 +6,7 @@ export default function Calendar({ onSelectDoor }) {
 
   return (
     <div className="calendar-wrapper">
-      <h1 className="calendar-title">Advent Calendar</h1>
+      <h1 className="calendar-title">12 Days of Shipmas</h1>
       <div className="calendar-frame">
         <div className="calendar-grid">
           {doors.map((doorNumber) => (
