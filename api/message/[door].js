@@ -17,22 +17,30 @@ const unlockDates = {
 };
 
 function isDoorUnlocked(doorNumber) {
+  // Use Eastern Time for unlock checks
   const now = new Date();
-  const currentYear = now.getFullYear();
+  const eastern = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+
+  const currentYear = eastern.getFullYear();
+  const currentMonth = eastern.getMonth();
+  const currentDay = eastern.getDate();
+
   const unlock = unlockDates[doorNumber];
 
   if (!unlock) return false;
 
   // Handle year transition (Dec -> Jan)
   let unlockYear = currentYear;
-  if (unlock.month === 0 && now.getMonth() === 11) {
+  if (unlock.month === 0 && currentMonth === 11) {
     unlockYear = currentYear + 1;
-  } else if (unlock.month === 11 && now.getMonth() === 0) {
+  } else if (unlock.month === 11 && currentMonth === 0) {
     unlockYear = currentYear - 1;
   }
 
+  // Compare dates in Eastern Time
+  const todayET = new Date(currentYear, currentMonth, currentDay);
   const unlockDate = new Date(unlockYear, unlock.month, unlock.day);
-  return now >= unlockDate;
+  return todayET >= unlockDate;
 }
 
 export default function handler(req, res) {
