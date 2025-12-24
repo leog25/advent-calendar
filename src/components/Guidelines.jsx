@@ -29,7 +29,7 @@ export default function Guidelines({ onClose }) {
               <li>Each daily submission must include:
                 <ul>
                   <li>A post in the <strong>#building</strong> channel on Slack (required)</li>
-                  <li>Optionally, share on social media:
+                  <li>Optional but highly recommended, share on social media:
                     <ul>
                       <li>X (Twitter)</li>
                       <li>LinkedIn</li>
