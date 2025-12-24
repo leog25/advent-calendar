@@ -28,9 +28,9 @@ export default function Guidelines({ onClose }) {
               <li>All submissions must be submitted via the <a href="https://tally.so/r/Xxr2gz" target="_blank" rel="noopener noreferrer">Tally Form</a> by 11:59 PM (local time) each day.</li>
               <li>Each daily submission must include:
                 <ul>
-                  <li>A link to a public post sharing your project on at least one of the following platforms:
+                  <li>A post in the <strong>#building</strong> channel on Slack (required)</li>
+                  <li>Optionally, share on social media:
                     <ul>
-                      <li>#building channel on Slack</li>
                       <li>X (Twitter)</li>
                       <li>LinkedIn</li>
                       <li>Personal website / portfolio</li>

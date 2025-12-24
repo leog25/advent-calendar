@@ -5,11 +5,11 @@
 1. **Daily Submission**
     1. All submissions must be submitted via this [**Tally Form](https://tally.so/r/Xxr2gz)** by 11:59 PM (local time) each day.
     2. Each daily submission must include:
-        1. A link to a public post sharing your project on at least one of the following platforms:
-            1. #building channel on Slack
-            2. X (Twitter)
-            3. LinkedIn
-            4. Personal website / portfolio
+        1. A post in the #building channel on Slack (required)
+        2. Optionally, share on social media:
+            1. X (Twitter)
+            2. LinkedIn
+            3. Personal website / portfolio
     3. A live link to your app, website, or project demo
     4. A brief project description (At least a sentence)
 2. **Daily Prompts**
