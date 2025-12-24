@@ -25,6 +25,14 @@ export default function Calendar({ onSelectDoor }) {
           </motion.span>
         ))}
       </h1>
+      <motion.div
+        className="calendar-byline"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.6 }}
+      >
+        By <img src="/logo.png" alt="Logo" className="byline-logo" />
+      </motion.div>
       <div className="calendar-frame">
         <div className="calendar-grid">
           {doors.map((doorNumber) => (
