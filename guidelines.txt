@@ -1,0 +1,40 @@
+# Guidelines
+
+### Santa Claude is coming to town 🎅
+
+1. **Daily Submission**
+    1. All submissions must be submitted via this [**Tally Form](https://tally.so/r/Xxr2gz)** by 11:59 PM (local time) each day.
+    2. Each daily submission must include:
+        1. A link to a public post sharing your project on at least one of the following platforms:
+            1. #building channel on Slack
+            2. X (Twitter)
+            3. LinkedIn
+            4. Personal website / portfolio
+    3. A live link to your app, website, or project demo
+    4. A brief project description (At least a sentence)
+2. **Daily Prompts**
+    1. Each day’s prompt will be released at 12:01 AM here: landing page.
+    2. Prompts act as themes, not strict requirements — interpretation is up to you.
+3. **Creative Freedom**
+    1. You may use any programming language, framework, or tool.
+    2. Projects can be new builds or extensions of previous days’ work, as long as:
+        1. You ship something new each day
+        2. The update clearly relates to that day’s theme
+4. **Judging + Prizes**
+    1. All submissions will be reviewed and rated daily.
+    2. To be eligible for the final prize, participants must:
+        1. Ship a project every day of the challenge
+        2. Submit the Tally Form on time each day
+    3. Final winners will be selected based on:
+        1. Creativity
+        2. Functionality / execution
+        3. Alignment with the day’s theme
+        4. Consistency across the challenge
+
+### **🎉 Final Note**
+
+This challenge is about **building, creativity, and community** — not perfection. 
+
+Ship something small. Have fun. Support each other.
+
+**Hope you all enjoy — and happy building! 🎄🚀**

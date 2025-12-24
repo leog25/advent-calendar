@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Calendar from './components/Calendar';
 import DoorDetail from './components/DoorDetail';
+import Guidelines from './components/Guidelines';
 import './App.css';
 
 function Snowflakes() {
@@ -39,6 +40,7 @@ function Snowflakes() {
 export default function App() {
   const [selectedDoor, setSelectedDoor] = useState(null);
   const [doorPosition, setDoorPosition] = useState(null);
+  const [showGuidelines, setShowGuidelines] = useState(false);
 
   const handleSelectDoor = (doorNumber, position) => {
     setDoorPosition(position);
@@ -53,6 +55,19 @@ export default function App() {
   return (
     <div className="app">
       <Snowflakes />
+
+      <motion.button
+        className="guidelines-button"
+        onClick={() => setShowGuidelines(true)}
+        animate={{
+          opacity: selectedDoor || showGuidelines ? 0 : 1,
+          pointerEvents: selectedDoor || showGuidelines ? 'none' : 'auto',
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        Guidelines
+      </motion.button>
+
       <motion.div
         className="calendar-container"
         animate={{
@@ -75,6 +90,12 @@ export default function App() {
             startPosition={doorPosition}
             onClose={handleCloseDoor}
           />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showGuidelines && (
+          <Guidelines onClose={() => setShowGuidelines(false)} />
         )}
       </AnimatePresence>
     </div>

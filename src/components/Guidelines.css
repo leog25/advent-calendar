@@ -1,0 +1,138 @@
+.guidelines-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 40px 20px;
+}
+
+.guidelines-modal {
+  background: #f5f4f0;
+  border-radius: 8px;
+  width: min(90vw, 540px);
+  max-height: calc(100vh - 220px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  transform-origin: center;
+  margin-bottom: 40px;
+}
+
+.guidelines-scroll {
+  padding: 30px;
+  overflow-y: auto;
+  color: #1a1a1a;
+}
+
+.guidelines-scroll h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin: 0 0 25px 0;
+  text-align: center;
+}
+
+.guidelines-scroll h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 20px 0 10px 0;
+  color: #c22234;
+}
+
+.guidelines-scroll section {
+  margin-bottom: 15px;
+}
+
+.guidelines-scroll ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.guidelines-scroll li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.guidelines-scroll li ul {
+  margin-top: 8px;
+}
+
+.guidelines-scroll a {
+  color: #c22234;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.guidelines-scroll a:hover {
+  text-decoration: underline;
+}
+
+.guidelines-footer {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.guidelines-footer p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.guidelines-footer .closing {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+.guidelines-back-button {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 101;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-family: 'Instrument Serif', serif;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.guidelines-back-button:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 500px) {
+  .guidelines-overlay {
+    padding: 20px 15px;
+  }
+
+  .guidelines-modal {
+    max-height: calc(100vh - 120px);
+  }
+
+  .guidelines-scroll {
+    padding: 20px;
+  }
+
+  .guidelines-scroll h2 {
+    font-size: 1.5rem;
+  }
+
+  .guidelines-scroll h3 {
+    font-size: 1.1rem;
+  }
+}
