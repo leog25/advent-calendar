@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import Calendar from './components/Calendar';
 import DoorDetail from './components/DoorDetail';
 import Guidelines from './components/Guidelines';
@@ -100,6 +101,8 @@ export default function App() {
           <Guidelines onClose={() => setShowGuidelines(false)} />
         )}
       </AnimatePresence>
+
+      <Analytics />
     </div>
   );
 }
