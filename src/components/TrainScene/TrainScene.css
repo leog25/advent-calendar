@@ -84,6 +84,12 @@
   animation: rumble 0.2s linear infinite;
 }
 
+.locomotive-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
 .locomotive {
   height: 115px;
   animation-delay: 0s;
@@ -116,6 +122,50 @@
 
 .caboose {
   margin-left: -2px;
+}
+
+/* ===== Smoke ===== */
+.smoke-container {
+  position: absolute;
+  z-index: -1;
+}
+
+.smoke {
+  position: absolute;
+  height: auto;
+  animation: smoke-rise 7s ease-out forwards;
+  transform-origin: center center;
+}
+
+@keyframes smoke-rise {
+  0% {
+    transform: translate(0, 0) rotate(var(--rotation)) scale(0.2);
+    opacity: 0.8;
+  }
+  10% {
+    transform: translate(15px, -60px) rotate(var(--rotation)) scale(0.4);
+    opacity: 0.75;
+  }
+  25% {
+    transform: translate(60px, -100px) rotate(var(--rotation)) scale(0.65);
+    opacity: 0.7;
+  }
+  45% {
+    transform: translate(180px, -120px) rotate(var(--rotation)) scale(0.95);
+    opacity: 0.6;
+  }
+  65% {
+    transform: translate(320px, -130px) rotate(var(--rotation)) scale(1.25);
+    opacity: 0.5;
+  }
+  85% {
+    transform: translate(450px, -135px) rotate(var(--rotation)) scale(1.55);
+    opacity: 0.25;
+  }
+  100% {
+    transform: translate(550px, -140px) rotate(var(--rotation)) scale(1.8);
+    opacity: 0;
+  }
 }
 
 /* ===== Responsive ===== */
