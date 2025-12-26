@@ -121,45 +121,80 @@
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   .train-scene {
-    height: 150px;
+    height: 300px;
+  }
+
+  .train-layer {
+    bottom: 5px;
   }
 
   .train-car {
-    height: 50px;
-  }
-
-  .locomotive {
     height: 60px;
   }
 
+  .locomotive {
+    height: 70px;
+  }
+
   .hills-layer {
-    height: 100px;
+    height: 200px;
   }
 
   .cloud {
-    transform: scale(0.7);
+    transform: scale(0.6);
   }
 }
 
 @media (max-width: 480px) {
   .train-scene {
-    height: 120px;
+    height: 200px;
+  }
+
+  .train-layer {
+    bottom: -15px;
   }
 
   .train-car {
-    height: 40px;
+    height: 45px;
   }
 
   .locomotive {
-    height: 50px;
+    height: 55px;
+  }
+
+  .cart,
+  .caboose {
+    display: none;
   }
 
   .hills-layer {
-    height: 80px;
+    height: 120px;
   }
 
   .cloud {
-    transform: scale(0.5);
+    transform: scale(0.4);
+  }
+}
+
+@media (max-width: 360px) {
+  .train-scene {
+    height: 150px;
+  }
+
+  .train-car {
+    height: 35px;
+  }
+
+  .locomotive {
+    height: 45px;
+  }
+
+  .hills-layer {
+    height: 90px;
+  }
+
+  .cloud {
+    transform: scale(0.3);
   }
 }
 
