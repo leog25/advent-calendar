@@ -36,6 +36,52 @@
   color: #fff;
 }
 
+.show-calendar-button {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: rgba(155, 30, 46, 0.9);
+  border: 2px solid rgba(255, 215, 0, 0.6);
+  color: #fff;
+  padding: 16px 32px;
+  font-size: 1.3rem;
+  font-family: 'Instrument Serif', serif;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.show-calendar-button:hover {
+  background: rgba(155, 30, 46, 1);
+  border-color: rgba(255, 215, 0, 0.9);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.hide-calendar-button {
+  position: fixed;
+  top: 70px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-family: 'Instrument Serif', serif;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hide-calendar-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
 .snowfall {
   position: fixed;
   inset: 0;
